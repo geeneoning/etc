@@ -3,84 +3,103 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>링크 대시보드 (iOS 호환 · 무자바스크립트)</title>
+<title>링크 대시보드 (iOS/Android · 무자바스크립트)</title>
 <style>
-:root{ --bg:#0b1220; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --brand:#60a5fa; --border:#1f2937; }
-@media (prefers-color-scheme: light){ :root{ --bg:#f6f7fb; --card:#ffffff; --text:#0b1220; --muted:#6b7280; --brand:#2563eb; --border:#e5e7eb; } }
+:root{
+  --bg:#0b1220; --bg2:#0e1529; --text:#e6e9f0; --muted:#9aa3b2; --border:#1e2a44;
+  --card:#0f1730; --card2:#101a38;
+  --radius:18px; --shadow:0 18px 40px rgba(0,0,0,.35);
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#f6f7fb; --bg2:#eef2ff; --text:#0c1220; --muted:#6b7280; --border:#e5e7eb;
+    --card:#ffffff; --card2:#f8fafc; --shadow:0 16px 36px rgba(15,23,42,.08);
+  }
+}
 *{box-sizing:border-box}
-body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,Apple SD Gothic Neo; background:var(--bg); color:var(--text)}
-header{position:sticky; top:0; z-index:10; background:var(--card); border-bottom:1px solid var(--border)}
-.h-inner{max-width:800px; margin:0 auto; padding:14px 16px; font-weight:700; font-size:16px}
-.wrap{max-width:800px; margin:0 auto; padding:16px}
-.list{display:grid; gap:12px}
-.item{padding:14px; background:var(--card); border:1px solid var(--border); border-radius:14px}
-.title{margin:0 0 4px; font-size:15px}
-.desc{margin:0 0 12px; font-size:13px; color:var(--muted)}
-.btn{display:inline-block; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:var(--brand); color:#fff; text-decoration:none; font-size:13px}
-footer{max-width:800px; margin:24px auto 48px; padding:0 16px; color:var(--muted); font-size:12px}
+html,body{height:100%}
+body{
+  margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,Apple SD Gothic Neo;
+  color:var(--text);
+  background:linear-gradient(180deg,var(--bg),var(--bg2));
+}
+header{position:sticky; top:0; z-index:20; backdrop-filter:saturate(140%) blur(10px);}
+.h-inner{max-width:980px; margin:0 auto; padding:calc(12px + env(safe-area-inset-top,0px)) 16px 12px; font-weight:800; font-size:17px; border-bottom:1px solid var(--border); background:color-mix(in sRGB, var(--card) 92%, transparent)}
+.wrap{max-width:980px; margin:0 auto; padding:16px; padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
+.list{display:grid; gap:18px}
+.item{position:relative; border:1px solid var(--border); border-radius:var(--radius); padding:18px; background:linear-gradient(180deg, color-mix(in sRGB, var(--card) 95%, transparent), color-mix(in sRGB, var(--card2) 90%, transparent)); box-shadow:var(--shadow)}
+.title{margin:0 0 8px; font-size:16px; font-weight:800}
+.desc{margin:0 0 14px; font-size:13px; color:var(--muted)}
+.actions{display:flex; flex-wrap:wrap; gap:10px}
+
+/* 버튼 기본 스타일: 선명한 단색 */
+.btn{display:inline-block; padding:13px 15px; min-height:46px; line-height:1; border-radius:12px; text-decoration:none; font-size:14px; font-weight:700; white-space:nowrap; color:#fff; border:none; cursor:pointer; transition:opacity .15s ease}
+.btn:active{opacity:0.85}
+.btn:focus-visible{outline:2px solid #fff; outline-offset:2px}
+
+/* 색상 테마 */
+.item.attend .btn.primary{background:#10b981}      /* 출석부 현황: green */
+.item.report .btn.primary{background:#3b82f6}      /* 출석리포트 현황: blue */
+.item.memory .btn.primary{background:#8b5cf6}      /* 암기테스트 현황: purple */
+.item.weekly .btn.primary{background:#f59e0b}      /* 주간리포트 현황: amber */
+
+/* 미제출자 보고 버튼: 빨간색 */
+.btn.danger{background:#ef4444}
+
+/* 작은 화면 최적화 */
+@media (max-width:380px){ .title{font-size:15px} .btn{font-size:13px; padding:12px 13px} }
 </style>
 </head>
 <body>
 <header>
-<div class="h-inner">신규 스터디장 오범준님 대시보드</div>
+  <div class="h-inner">신규 스터디장 오범준님 대시보드</div>
 </header>
 
-
 <main class="wrap">
-<!-- ⚠️ iOS 파일앱/카톡 미리보기에서도 보이도록 JS 없이 작성되었습니다. 필요 링크만 아래에 복붙하세요. -->
-<div class="list">
+  <div class="list">
 
-<section class="item">
-<h3 class="title">출석부 (캠 출석 확인)</h3>
-<p class="desc">매일 확인</p>
-<a class="btn" href="https://docs.google.com/spreadsheets/d/1wRbSR49abRDNXvAoS4nLx9WoQFojOeBjLthS2mnNx0s/edit?gid=645549374#gid=645549374" target="_blank" rel="noopener noreferrer">열기</a>
-</section>
+    <section class="item attend">
+      <h3 class="title">출석부 (캠 출석 확인)</h3>
+      <p class="desc">매일 10시 확인</p>
+      <div class="actions">
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1wRbSR49abRDNXvAoS4nLx9WoQFojOeBjLthS2mnNx0s/edit?gid=645549374#gid=645549374" target="_blank" rel="noopener noreferrer">현황 열기</a>
+        <a class="btn danger" href="https://docs.google.com/forms/d/e/1FAIpQLScMb0B4aUfFyVHqeMd_SzWaEA1_VfrSFKrlgKsxBFKyqwAjIA/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">미제출자 보고</a>
+      </div>
+    </section>
 
+    <section class="item report">
+      <h3 class="title">출석리포트 제출 현황</h3>
+      <p class="desc">매일 14시 확인</p>
+      <div class="actions">
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1eE0Mvs1rMRoo5VGyTk8b9t5AHNGE3QoeW1Zw0c8sCRM/edit?gid=318986350#gid=318986350" target="_blank" rel="noopener noreferrer">현황 열기</a>
+        <a class="btn danger" href="https://docs.google.com/forms/d/e/1FAIpQLSdP220hCbyx1DCDTF5YpduU6ndFjp7FTZRTB7mm3GeMhMOaSg/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">미제출자 보고</a>
+      </div>
+    </section>
 
-<section class="item">
-<h3 class="title">출석리포트 제출 현황</h3>
-<p class="desc">매일 확인</p>
-<a class="btn" href="https://docs.google.com/spreadsheets/d/1eE0Mvs1rMRoo5VGyTk8b9t5AHNGE3QoeW1Zw0c8sCRM/edit?gid=318986350#gid=318986350" target="_blank" rel="noopener noreferrer">열기</a>
-</section>
+    <section class="item memory">
+      <h3 class="title">암기테스트 제출 현황</h3>
+      <p class="desc">매일 17시 확인</p>
+      <div class="actions">
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/12LjUN9lAlHJ_zUBJhxpfSIIFl0_rhORnRhAhnVHyTnI/edit?gid=1954274760#gid=1954274760" target="_blank" rel="noopener noreferrer">헌법 현황</a>
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/19EqpI8uDz-QXR7USS0EgCLSGkQMMMXvhkf5yp1WoCkY/edit?gid=1472554481#gid=1472554481" target="_blank" rel="noopener noreferrer">형사법 현황</a>
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1xuaNNqcNijIU4ZzCyCxWopa9OHLYsEIGJv__U2G2H1g/edit?gid=288194086#gid=288194086" target="_blank" rel="noopener noreferrer">경찰학 현황</a>
+        <a class="btn danger" href="https://docs.google.com/forms/d/e/1FAIpQLSeVovzRBsJJlr18yCbHm62OJWV0iBBxXeJqvCG9D79aD_qoqg/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">미제출자 보고</a>
+      </div>
+    </section>
 
+    <section class="item weekly">
+      <h3 class="title">주간리포트 제출 현황</h3>
+      <p class="desc">매주 일요일 16시 확인</p>
+      <div class="actions">
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1BDDCVJyTOSskRyIPweKNaU_9msG7yOmMkWDmc1dS690/edit?gid=1268348849#gid=1268348849" target="_blank" rel="noopener noreferrer">현황 열기</a>
+        <a class="btn danger" href="https://docs.google.com/forms/d/e/1FAIpQLSdQOcVQ6bJtRQy99G4Uo7P8v3vt-b6cy0nIEMriqDN-vL1cQA/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">미제출자 보고</a>
+      </div>
+    </section>
 
-<section class="item">
-<h3 class="title">암기테스트 제출 현황</h3>
-<p class="desc">매일 확인</p>
-<a class="btn" href="https://docs.google.com/spreadsheets/d/12LjUN9lAlHJ_zUBJhxpfSIIFl0_rhORnRhAhnVHyTnI/edit?gid=1954274760#gid=1954274760" target="_blank" rel="noopener noreferrer">헌법 열기</a>
-<a class="btn" href="https://docs.google.com/spreadsheets/d/19EqpI8uDz-QXR7USS0EgCLSGkQMMMXvhkf5yp1WoCkY/edit?gid=1472554481#gid=1472554481" target="_blank" rel="noopener noreferrer">형사법 열기</a>
-<a class="btn" href="https://docs.google.com/spreadsheets/d/1xuaNNqcNijIU4ZzCyCxWopa9OHLYsEIGJv__U2G2H1g/edit?gid=288194086#gid=288194086" target="_blank" rel="noopener noreferrer">경찰학 열기</a>
-</section>
-
-
-<section class="item">
-<h3 class="title">수험기록 리포트 제출 현황</h3>
-<p class="desc">매일 확인</p>
-<a class="btn" href="https://docs.google.com/spreadsheets/d/1606v10mVxmGLEUW8RFmihoDdI8zw5n0NTOp1TRWux18/edit?gid=435882025#gid=435882025" target="_blank" rel="noopener noreferrer">열기</a>
-</section>
-
-
-<section class="item">
-<h3 class="title">주간리포트 제출 현황</h3>
-<p class="desc">일요일 확인</p>
-<a class="btn" href="https://docs.google.com/spreadsheets/d/1BDDCVJyTOSskRyIPweKNaU_9msG7yOmMkWDmc1dS690/edit?gid=1268348849#gid=1268348849" target="_blank" rel="noopener noreferrer">열기</a>
-</section>
-
-
-<section class="item">
-<h3 class="title">미제출자 보고</h3>
-<p class="desc">미제출자 발생 시</p>
-<a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLScMb0B4aUfFyVHqeMd_SzWaEA1_VfrSFKrlgKsxBFKyqwAjIA/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">출석부</a>
-<a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSenr-BCGalPfwGsu9EnBO-ddIu_cDvKSNSLeCAq0QWO7L8g3g/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">수험기록 리포트</a>
-<a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeVovzRBsJJlr18yCbHm62OJWV0iBBxXeJqvCG9D79aD_qoqg/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">암기테스트</a>
-<a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdQOcVQ6bJtRQy99G4Uo7P8v3vt-b6cy0nIEMriqDN-vL1cQA/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">주간리포트</a>
-<a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdP220hCbyx1DCDTF5YpduU6ndFjp7FTZRTB7mm3GeMhMOaSg/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">출석리포트</a>
-</section>
-</div>
+  </div>
 </main>
 
-
-<footer>
+<footer style="max-width:980px;margin:28px auto 56px;padding:0 18px;color:var(--muted);font-size:12px">
 • 각 링크는 본인 구글 계정 권한으로만 열립니다. 링크가 안 열린다면 Police Maker 관리팀장에게 권한 요청을 해주세요.
 </footer>
 </body>
