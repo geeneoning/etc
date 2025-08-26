@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>멘토 대시보드</title>
+<title>멘토 메뉴얼 보드드</title>
 <style>
 :root{
   --bg:#0f172a; --bg2:#1e293b; --text:#f1f5f9; --muted:#94a3b8; --border:#334155;
@@ -81,7 +81,7 @@ header{
 .btn:focus-visible{outline:2px solid #3b82f6; outline-offset:2px}
 .time{color:#22d3ee; font-weight:800}
 
-/* 섹션 컬러 테마 (PoliceMaker 스타일과 동일 패턴) */
+/* 섹션 컬러 테마 */
 .item.weekly .title-icon{background:#f59e0b; color:#fff}
 .item.weekly .btn.primary{background:#f59e0b}
 
@@ -106,6 +106,9 @@ header{
 .item.attend-check .title-icon{background:#10b981; color:#fff}
 .item.attend-check .btn.primary{background:#10b981}
 
+.item.memory-missing .title-icon{background:#8b5cf6; color:#fff}
+.item.memory-missing .btn.primary{background:#8b5cf6}
+
 /* 작은 화면 최적화 */
 @media (max-width:480px){ 
   .welcome{font-size:20px} 
@@ -120,7 +123,7 @@ header{
 <body>
 <header>
   <div class="h-inner">
-    <div class="welcome">👋 멘토 업무 대시보드</div>
+    <div class="welcome">👋 멘토 메뉴얼 보드</div>
     <div class="subtitle">업무 시간을 기준으로 필요한 항목을 빠르게 확인하세요.</div>
   </div>
 </header>
@@ -202,6 +205,17 @@ header{
       <p class="desc">당일 미제출자 명단을 확인합니다.</p>
       <div class="actions">
         <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=1991190881#gid=1991190881" target="_blank" rel="noopener noreferrer">명단 열기</a>
+      </div>
+    </section>
+
+    <section class="item memory-missing">
+      <h3 class="title">
+        <span class="title-icon">🧠</span>
+        10:00 암기테스트 미제출자 명단 확인 <span class="time">(10:00)</span>
+      </h3>
+      <p class="desc">당일 암기테스트 미제출자 명단을 확인합니다.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=2000995989#gid=2000995989" target="_blank" rel="noopener noreferrer">명단 열기</a>
       </div>
     </section>
 
