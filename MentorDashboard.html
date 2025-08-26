@@ -7,13 +7,13 @@
 <style>
 :root{
   --bg:#0f172a; --bg2:#1e293b; --text:#f1f5f9; --muted:#94a3b8; --border:#334155;
-  --card:#1e293b; --card2:#334155; --accent:#38bdf8;
-  --radius:16px; --shadow:0 20px 25px -5px rgba(0,0,0,0.35);
+  --card:#1e293b; --card2:#334155;
+  --radius:16px; --shadow:0 20px 25px -5px rgba(0,0,0,0.3);
 }
 @media (prefers-color-scheme: light){
   :root{
     --bg:#f8fafc; --bg2:#e2e8f0; --text:#0f172a; --muted:#64748b; --border:#cbd5e1;
-    --card:#ffffff; --card2:#f1f5f9; --accent:#2563eb; --shadow:0 20px 25px -5px rgba(0,0,0,0.12);
+    --card:#ffffff; --card2:#f1f5f9; --shadow:0 20px 25px -5px rgba(0,0,0,0.1);
   }
 }
 *{box-sizing:border-box}
@@ -22,113 +22,206 @@ body{
   margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,Apple SD Gothic Neo;
   color:var(--text);
   background:linear-gradient(135deg,var(--bg),var(--bg2));
+  min-height:100vh;
 }
-header{position:sticky; top:0; z-index:20; backdrop-filter:saturate(140%) blur(18px); border-bottom:1px solid var(--border); background:color-mix(in sRGB, var(--card) 92%, transparent)}
-.h-inner{max-width:960px; margin:0 auto; padding:20px 24px; text-align:center}
-.title{margin:0; font-size:24px; font-weight:900; letter-spacing:-0.2px;}
-.title-grad{background:linear-gradient(135deg,#38bdf8,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text}
-.subtitle{margin:6px 0 0; color:var(--muted); font-size:14px}
-.wrap{max-width:960px; margin:0 auto; padding:24px; padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
-.group{margin:0 0 22px; font-size:15px; color:var(--muted); font-weight:800; letter-spacing:.2px}
-.grid{display:grid; gap:18px}
-.card{position:relative; border:1px solid var(--border); border-radius:var(--radius); background:linear-gradient(135deg, var(--card), var(--card2)); padding:20px; box-shadow:var(--shadow)}
-.card h3{margin:0 0 8px; font-size:16px; font-weight:800; display:flex; align-items:center; gap:10px}
-.badge{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:700; color:#0b1220; background:#e0f2fe}
-.desc{margin:6px 0 14px; font-size:13px; color:var(--muted); line-height:1.5}
-.actions{display:flex; flex-wrap:wrap; gap:10px}
-.btn{display:inline-flex; align-items:center; gap:8px; padding:12px 16px; min-height:44px; border-radius:12px; text-decoration:none; font-size:14px; font-weight:700; white-space:nowrap; color:#fff; border:1px solid transparent; box-shadow:0 6px 16px rgba(0,0,0,.18); transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease}
-.btn:hover{transform:translateY(-1px); box-shadow:0 10px 22px rgba(0,0,0,.28)}
-.btn:active{transform:none; opacity:.9}
-.btn:focus-visible{outline:2px solid #fff; outline-offset:2px}
-.primary{background:#3b82f6}
-.success{background:#10b981}
-.warning{background:#f59e0b}
-.danger{background:#ef4444}
-.indigo{background:#6366f1}
-.sky{background:#0ea5e9}
+header{
+  position:sticky; 
+  top:0; 
+  z-index:20; 
+  backdrop-filter:saturate(140%) blur(20px);
+  background:color-mix(in sRGB, var(--card) 90%, transparent);
+  border-bottom:1px solid var(--border);
+}
+.h-inner{
+  max-width:800px; 
+  margin:0 auto; 
+  padding:20px 24px; 
+  text-align:center;
+}
+.welcome{
+  font-size:24px; 
+  font-weight:800; 
+  margin:0 0 8px;
+  background:linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.subtitle{
+  font-size:16px; 
+  color:var(--muted); 
+  margin:0;
+}
+.wrap{
+  max-width:800px; 
+  margin:0 auto; 
+  padding:24px;
+  padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))
+}
+.list{display:grid; gap:20px}
+.item{
+  position:relative; border:1px solid var(--border); border-radius:var(--radius); padding:24px; 
+  background:linear-gradient(135deg, var(--card), var(--card2)); box-shadow:var(--shadow);
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+.item:hover{transform:translateY(-2px); box-shadow:0 25px 50px -12px rgba(0,0,0,0.4)}
+.title{
+  margin:0 0 12px; font-size:18px; font-weight:700; display:flex; align-items:center; gap:12px;
+}
+.title-icon{width:24px; height:24px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800}
+.desc{margin:0 0 20px; font-size:14px; color:var(--muted); line-height:1.5}
+.actions{display:flex; flex-wrap:wrap; gap:12px}
+.btn{
+  display:inline-flex; align-items:center; gap:8px; padding:14px 20px; min-height:48px; line-height:1; 
+  border-radius:12px; text-decoration:none; font-size:14px; font-weight:600; white-space:nowrap; color:#fff; border:none; cursor:pointer; 
+  transition:all 0.2s ease; box-shadow:0 4px 12px rgba(0,0,0,0.15)
+}
+.btn:hover{transform:translateY(-1px); box-shadow:0 8px 20px rgba(0,0,0,0.25)}
+.btn:active{transform:translateY(0)}
+.btn:focus-visible{outline:2px solid #3b82f6; outline-offset:2px}
 .time{color:#22d3ee; font-weight:800}
-@media (max-width:480px){ .title{font-size:20px} .grid{gap:14px} .btn{font-size:13px; padding:11px 14px} .wrap{padding:16px} }
+
+/* 섹션 컬러 테마 (PoliceMaker 스타일과 동일 패턴) */
+.item.weekly .title-icon{background:#f59e0b; color:#fff}
+.item.weekly .btn.primary{background:#f59e0b}
+
+.item.setup .title-icon{background:#3b82f6; color:#fff}
+.item.setup .btn.primary{background:#3b82f6}
+
+.item.setup-report .title-icon{background:#10b981; color:#fff}
+.item.setup-report .btn.primary{background:#10b981}
+
+.item.inquiry .title-icon{background:#0ea5e9; color:#fff}
+.item.inquiry .btn.primary{background:#0ea5e9}
+
+.item.record .title-icon{background:#6366f1; color:#fff}
+.item.record .btn.primary{background:#6366f1}
+
+.item.record-report .title-icon{background:#ef4444; color:#fff}
+.item.record-report .btn.primary{background:#ef4444}
+
+.item.attend-missing .title-icon{background:#f59e0b; color:#fff}
+.item.attend-missing .btn.primary{background:#f59e0b}
+
+.item.attend-check .title-icon{background:#10b981; color:#fff}
+.item.attend-check .btn.primary{background:#10b981}
+
+/* 작은 화면 최적화 */
+@media (max-width:480px){ 
+  .welcome{font-size:20px} 
+  .subtitle{font-size:14px}
+  .title{font-size:16px} 
+  .btn{font-size:13px; padding:12px 16px} 
+  .wrap{padding:16px}
+  .item{padding:20px}
+}
 </style>
 </head>
 <body>
 <header>
   <div class="h-inner">
-    <h1 class="title"><span class="title-grad">멘토 대시보드</span></h1>
-    <p class="subtitle">업무 시간을 기준으로 필요한 항목을 빠르게 확인하세요.</p>
+    <div class="welcome">👋 멘토 업무 대시보드</div>
+    <div class="subtitle">업무 시간을 기준으로 필요한 항목을 빠르게 확인하세요.</div>
   </div>
- </header>
+</header>
 
 <main class="wrap">
+  <div class="list">
 
-  <div class="group">[진도설정 관련]</div>
-  <section class="grid">
-    <article class="card">
-      <h3>📋 주간리포트 미제출 명단 확인 <span class="time">금요일 16:00</span></h3>
+    <section class="item weekly">
+      <h3 class="title">
+        <span class="title-icon">⏱️</span>
+        금요일 16:00 주간리포트 미제출 명단 확인 <span class="time">(금 16:00)</span>
+      </h3>
       <p class="desc">주간리포트 미제출 인원을 확인하여 주말 진도설정 전 사전 점검합니다.</p>
       <div class="actions">
-        <a class="btn warning" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=1340408622#gid=1340408622" target="_blank" rel="noopener noreferrer">명단 열기</a>
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=1340408622#gid=1340408622" target="_blank" rel="noopener noreferrer">명단 열기</a>
       </div>
-    </article>
-    <article class="card">
-      <h3>🧭 신규인원 진도설정 <span class="time">토요일 ~ 일요일 15:00</span></h3>
+    </section>
+
+    <section class="item setup">
+      <h3 class="title">
+        <span class="title-icon">🧭</span>
+        토요일 ~ 일요일 15:00 신규인원 진도설정 <span class="time">(주말)</span>
+      </h3>
       <p class="desc">신규인원의 주간 학습 계획을 시트에 설정합니다.</p>
       <div class="actions">
         <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1_whF24s-vv-w2mLrwqGueeJkj4Eam8j8hi-iFIbgHGE/edit?gid=448644496#gid=448644496" target="_blank" rel="noopener noreferrer">진도 시트 열기</a>
       </div>
-    </article>
-    <article class="card">
-      <h3>✅ 진도설정 여부 보고</h3>
+    </section>
+
+    <section class="item setup-report">
+      <h3 class="title">
+        <span class="title-icon">✅</span>
+        신규인원 진도설정 여부 보고
+      </h3>
       <p class="desc">주말 진도설정 완료 후 바로 보고서를 제출합니다.</p>
       <div class="actions">
-        <a class="btn success" href="https://docs.google.com/forms/d/e/1FAIpQLSed3R9MaBQQH-BRKiPqDL2Ahrs5VKYqVZOWbToLowxMV4vo5g/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">보고서 제출</a>
+        <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSed3R9MaBQQH-BRKiPqDL2Ahrs5VKYqVZOWbToLowxMV4vo5g/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">보고서 제출</a>
       </div>
-    </article>
-  </section>
+    </section>
 
-  <div class="group" style="margin-top:28px">[일일 업무 08:30 ~ 09:00]</div>
-  <section class="grid">
-    <article class="card">
-      <h3>📨 문의 리포트 확인 <span class="time">09:00~11:00 / 14:00 / 17:00</span></h3>
+    <section class="item inquiry">
+      <h3 class="title">
+        <span class="title-icon">📨</span>
+        문의 리포트 확인 <span class="time">(09:00~11:00 / 14:00 / 17:00)</span>
+      </h3>
       <p class="desc">수험생 문의 현황을 확인하고 처리합니다.</p>
       <div class="actions">
-        <a class="btn sky" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=1159472530#gid=1159472530" target="_blank" rel="noopener noreferrer">문의 리포트</a>
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=1159472530#gid=1159472530" target="_blank" rel="noopener noreferrer">문의 리포트</a>
       </div>
-    </article>
-    <article class="card">
-      <h3>📝 수험기록 리포트 확인</h3>
+    </section>
+
+    <section class="item record">
+      <h3 class="title">
+        <span class="title-icon">📝</span>
+        수험기록 리포트 확인
+      </h3>
       <p class="desc">개별 수험생의 학습기록을 점검합니다.</p>
       <div class="actions">
-        <a class="btn indigo" href="https://docs.google.com/spreadsheets/d/1606v10mVxmGLEUW8RFmihoDdI8zw5n0NTOp1TRWux18/edit?gid=435882025#gid=435882025" target="_blank" rel="noopener noreferrer">수험기록 열기</a>
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1606v10mVxmGLEUW8RFmihoDdI8zw5n0NTOp1TRWux18/edit?gid=435882025#gid=435882025" target="_blank" rel="noopener noreferrer">수험기록 열기</a>
       </div>
-    </article>
-    <article class="card">
-      <h3>🚫 수험기록 미제출 명단 보고</h3>
+    </section>
+
+    <section class="item record-report">
+      <h3 class="title">
+        <span class="title-icon">🚫</span>
+        수험기록 리포트 미제출 명단 보고
+      </h3>
       <p class="desc">미제출자 발생 시 즉시 보고합니다.</p>
       <div class="actions">
-        <a class="btn danger" href="https://docs.google.com/forms/d/e/1FAIpQLSfeeU6n4ZeuG4T2005ByjTu8UwBI3Wzdu8_E856lbRQ8-LCIw/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">미제출 보고</a>
+        <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfeeU6n4ZeuG4T2005ByjTu8UwBI3Wzdu8_E856lbRQ8-LCIw/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">미제출 보고</a>
       </div>
-    </article>
-    <article class="card">
-      <h3>⏰ 출석 리포트 미제출자 확인 <span class="time">10:00</span></h3>
+    </section>
+
+    <section class="item attend-missing">
+      <h3 class="title">
+        <span class="title-icon">⏰</span>
+        10:00 출석 리포트 미제출자 확인 <span class="time">(10:00)</span>
+      </h3>
       <p class="desc">당일 미제출자 명단을 확인합니다.</p>
       <div class="actions">
-        <a class="btn warning" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=1991190881#gid=1991190881" target="_blank" rel="noopener noreferrer">명단 열기</a>
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=1991190881#gid=1991190881" target="_blank" rel="noopener noreferrer">명단 열기</a>
       </div>
-    </article>
-    <article class="card">
-      <h3>✅ 출석 리포트 제출 여부 확인 <span class="time">14:00</span></h3>
+    </section>
+
+    <section class="item attend-check">
+      <h3 class="title">
+        <span class="title-icon">✅</span>
+        14:00 출석 리포트 제출 여부 확인 <span class="time">(14:00)</span>
+      </h3>
       <p class="desc">출석 리포트 제출 상태를 점검합니다.</p>
       <div class="actions">
-        <a class="btn success" href="https://docs.google.com/spreadsheets/d/1eE0Mvs1rMRoo5VGyTk8b9t5AHNGE3QoeW1Zw0c8sCRM/edit?gid=318986350#gid=318986350" target="_blank" rel="noopener noreferrer">제출 현황</a>
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1eE0Mvs1rMRoo5VGyTk8b9t5AHNGE3QoeW1Zw0c8sCRM/edit?gid=318986350#gid=318986350" target="_blank" rel="noopener noreferrer">제출 현황</a>
       </div>
-    </article>
-  </section>
+    </section>
 
+  </div>
 </main>
 
-<footer style="max-width:960px;margin:40px auto 60px;padding:0 24px;text-align:center;color:var(--muted);font-size:12px;line-height:1.6">
-  <p>💡 각 카드의 버튼을 눌러 바로 해당 문서를 열 수 있습니다.</p>
-  <p>🔒 모든 링크는 접근 권한이 있어야 열립니다.</p>
+<footer style="max-width:800px;margin:40px auto 60px;padding:0 24px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6">
+  <p>💡 각 링크를 클릭하면 해당 문서를 바로 열 수 있습니다.</p>
+  <p>🔒 접근 권한이 필요한 문서는 권한 요청 후 이용하세요.</p>
 </footer>
 
 </body>
