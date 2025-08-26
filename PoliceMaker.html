@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>링크 대시보드 (iOS/Android · 무자바스크립트)</title>
+<title>신규인원 안내 대시보드</title>
 <style>
 :root{
-  --bg:#0b1220; --bg2:#0e1529; --text:#e6e9f0; --muted:#9aa3b2; --border:#1e2a44;
-  --card:#0f1730; --card2:#101a38;
-  --radius:18px; --shadow:0 18px 40px rgba(0,0,0,.35);
+  --bg:#0f172a; --bg2:#1e293b; --text:#f1f5f9; --muted:#94a3b8; --border:#334155;
+  --card:#1e293b; --card2:#334155;
+  --radius:16px; --shadow:0 20px 25px -5px rgba(0,0,0,0.3);
 }
 @media (prefers-color-scheme: light){
   :root{
-    --bg:#f6f7fb; --bg2:#eef2ff; --text:#0c1220; --muted:#6b7280; --border:#e5e7eb;
-    --card:#ffffff; --card2:#f8fafc; --shadow:0 16px 36px rgba(15,23,42,.08);
+    --bg:#f8fafc; --bg2:#e2e8f0; --text:#0f172a; --muted:#64748b; --border:#cbd5e1;
+    --card:#ffffff; --card2:#f1f5f9; --shadow:0 20px 25px -5px rgba(0,0,0,0.1);
   }
 }
 *{box-sizing:border-box}
@@ -21,86 +21,231 @@ html,body{height:100%}
 body{
   margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,Apple SD Gothic Neo;
   color:var(--text);
-  background:linear-gradient(180deg,var(--bg),var(--bg2));
+  background:linear-gradient(135deg,var(--bg),var(--bg2));
+  min-height:100vh;
 }
-header{position:sticky; top:0; z-index:20; backdrop-filter:saturate(140%) blur(10px);}
-.h-inner{max-width:980px; margin:0 auto; padding:calc(12px + env(safe-area-inset-top,0px)) 16px 12px; font-weight:800; font-size:17px; border-bottom:1px solid var(--border); background:color-mix(in sRGB, var(--card) 92%, transparent)}
-.wrap{max-width:980px; margin:0 auto; padding:16px; padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
-.list{display:grid; gap:18px}
-.item{position:relative; border:1px solid var(--border); border-radius:var(--radius); padding:18px; background:linear-gradient(180deg, color-mix(in sRGB, var(--card) 95%, transparent), color-mix(in sRGB, var(--card2) 90%, transparent)); box-shadow:var(--shadow)}
-.title{margin:0 0 8px; font-size:16px; font-weight:800}
-.desc{margin:0 0 14px; font-size:13px; color:var(--muted)}
-.actions{display:flex; flex-wrap:wrap; gap:10px}
-
-/* 버튼 기본 스타일: 선명한 단색 */
-.btn{display:inline-block; padding:13px 15px; min-height:46px; line-height:1; border-radius:12px; text-decoration:none; font-size:14px; font-weight:700; white-space:nowrap; color:#fff; border:none; cursor:pointer; transition:opacity .15s ease}
-.btn:active{opacity:0.85}
-.btn:focus-visible{outline:2px solid #fff; outline-offset:2px}
+header{
+  position:sticky; 
+  top:0; 
+  z-index:20; 
+  backdrop-filter:saturate(140%) blur(20px);
+  background:color-mix(in sRGB, var(--card) 90%, transparent);
+  border-bottom:1px solid var(--border);
+}
+.h-inner{
+  max-width:800px; 
+  margin:0 auto; 
+  padding:20px 24px; 
+  text-align:center;
+}
+.welcome{
+  font-size:24px; 
+  font-weight:800; 
+  margin:0 0 8px;
+  background:linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.subtitle{
+  font-size:16px; 
+  color:var(--muted); 
+  margin:0;
+}
+.wrap{
+  max-width:800px; 
+  margin:0 auto; 
+  padding:24px;
+  padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))
+}
+.list{
+  display:grid; 
+  gap:20px;
+}
+.item{
+  position:relative; 
+  border:1px solid var(--border); 
+  border-radius:var(--radius); 
+  padding:24px; 
+  background:linear-gradient(135deg, var(--card), var(--card2)); 
+  box-shadow:var(--shadow);
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+.item:hover{
+  transform:translateY(-2px);
+  box-shadow:0 25px 50px -12px rgba(0,0,0,0.4);
+}
+.title{
+  margin:0 0 12px; 
+  font-size:18px; 
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.title-icon{
+  width:24px;
+  height:24px;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  font-weight:800;
+}
+.desc{
+  margin:0 0 20px; 
+  font-size:14px; 
+  color:var(--muted);
+  line-height:1.5;
+}
+.actions{
+  display:flex; 
+  flex-wrap:wrap; 
+  gap:12px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:14px 20px; 
+  min-height:48px; 
+  line-height:1; 
+  border-radius:12px; 
+  text-decoration:none; 
+  font-size:14px; 
+  font-weight:600; 
+  white-space:nowrap; 
+  color:#fff; 
+  border:none; 
+  cursor:pointer; 
+  transition:all 0.2s ease;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+.btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.25);
+}
+.btn:active{
+  transform:translateY(0);
+}
+.btn:focus-visible{
+  outline:2px solid #3b82f6; 
+  outline-offset:2px;
+}
 
 /* 색상 테마 */
-.item.attend .btn.primary{background:#10b981}      /* 출석부 현황: green */
-.item.report .btn.primary{background:#3b82f6}      /* 출석리포트 현황: blue */
-.item.memory .btn.primary{background:#8b5cf6}      /* 암기테스트 현황: purple */
-.item.weekly .btn.primary{background:#f59e0b}      /* 주간리포트 현황: amber */
+.item.notice .title-icon{background:#3b82f6; color:#fff;}
+.item.notice .btn.primary{background:#3b82f6;}
 
-/* 미제출자 보고 버튼: 빨간색 */
-.btn.danger{background:#ef4444}
+.item.auth .title-icon{background:#10b981; color:#fff;}
+.item.auth .btn.primary{background:#10b981;}
+
+.item.mentor .title-icon{background:#8b5cf6; color:#fff;}
+.item.mentor .btn.primary{background:#8b5cf6;}
+
+.item.cam .title-icon{background:#f59e0b; color:#fff;}
+.item.cam .btn.primary{background:#f59e0b;}
+
+.item.schedule .title-icon{background:#ef4444; color:#fff;}
+.item.schedule .btn.primary{background:#ef4444;}
 
 /* 작은 화면 최적화 */
-@media (max-width:380px){ .title{font-size:15px} .btn{font-size:13px; padding:12px 13px} }
+@media (max-width:480px){ 
+  .welcome{font-size:20px} 
+  .subtitle{font-size:14px}
+  .title{font-size:16px} 
+  .btn{font-size:13px; padding:12px 16px} 
+  .wrap{padding:16px}
+  .item{padding:20px}
+}
 </style>
 </head>
 <body>
 <header>
-  <div class="h-inner">신규 스터디장 오범준님 대시보드</div>
+  <div class="h-inner">
+    <div class="welcome">👋 신규인원 환영합니다!</div>
+    <div class="subtitle">경찰공무원 시험 준비를 위한 필수 링크 모음</div>
+  </div>
 </header>
 
 <main class="wrap">
   <div class="list">
 
-    <section class="item attend">
-      <h3 class="title">출석부 (캠 출석 확인)</h3>
-      <p class="desc">매일 10시 확인</p>
+    <section class="item notice">
+      <h3 class="title">
+        <span class="title-icon">📢</span>
+        공지방
+      </h3>
+      <p class="desc">중요 공지사항과 일정을 확인할 수 있는 카카오톡 오픈채팅방입니다.</p>
       <div class="actions">
-        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1wRbSR49abRDNXvAoS4nLx9WoQFojOeBjLthS2mnNx0s/edit?gid=645549374#gid=645549374" target="_blank" rel="noopener noreferrer">현황 열기</a>
-        <a class="btn danger" href="https://docs.google.com/forms/d/e/1FAIpQLScMb0B4aUfFyVHqeMd_SzWaEA1_VfrSFKrlgKsxBFKyqwAjIA/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">미제출자 보고</a>
+        <a class="btn primary" href="https://open.kakao.com/o/gucNb3Nh" target="_blank" rel="noopener noreferrer">
+          📱 공지방 입장하기
+        </a>
       </div>
     </section>
 
-    <section class="item report">
-      <h3 class="title">출석리포트 제출 현황</h3>
-      <p class="desc">매일 14시 확인</p>
+    <section class="item auth">
+      <h3 class="title">
+        <span class="title-icon">✅</span>
+        인증방
+      </h3>
+      <p class="desc">출석 인증과 학습 현황을 공유하는 카카오톡 오픈채팅방입니다.</p>
       <div class="actions">
-        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1eE0Mvs1rMRoo5VGyTk8b9t5AHNGE3QoeW1Zw0c8sCRM/edit?gid=318986350#gid=318986350" target="_blank" rel="noopener noreferrer">현황 열기</a>
-        <a class="btn danger" href="https://docs.google.com/forms/d/e/1FAIpQLSdP220hCbyx1DCDTF5YpduU6ndFjp7FTZRTB7mm3GeMhMOaSg/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">미제출자 보고</a>
+        <a class="btn primary" href="https://open.kakao.com/o/g9pcc3Nh" target="_blank" rel="noopener noreferrer">
+          📱 인증방 입장하기
+        </a>
       </div>
     </section>
 
-    <section class="item memory">
-      <h3 class="title">암기테스트 제출 현황</h3>
-      <p class="desc">매일 17시 확인</p>
+    <section class="item mentor">
+      <h3 class="title">
+        <span class="title-icon">👨‍🏫</span>
+        멘토 1:1방
+      </h3>
+      <p class="desc">개인적인 학습 상담과 질문을 할 수 있는 멘토링 채팅방입니다.</p>
       <div class="actions">
-        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/12LjUN9lAlHJ_zUBJhxpfSIIFl0_rhORnRhAhnVHyTnI/edit?gid=1954274760#gid=1954274760" target="_blank" rel="noopener noreferrer">헌법 현황</a>
-        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/19EqpI8uDz-QXR7USS0EgCLSGkQMMMXvhkf5yp1WoCkY/edit?gid=1472554481#gid=1472554481" target="_blank" rel="noopener noreferrer">형사법 현황</a>
-        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1xuaNNqcNijIU4ZzCyCxWopa9OHLYsEIGJv__U2G2H1g/edit?gid=288194086#gid=288194086" target="_blank" rel="noopener noreferrer">경찰학 현황</a>
-        <a class="btn danger" href="https://docs.google.com/forms/d/e/1FAIpQLSeVovzRBsJJlr18yCbHm62OJWV0iBBxXeJqvCG9D79aD_qoqg/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">미제출자 보고</a>
+        <a class="btn primary" href="https://open.kakao.com/o/sfiEX9Ih" target="_blank" rel="noopener noreferrer">
+          📱 멘토링방 입장하기
+        </a>
       </div>
     </section>
 
-    <section class="item weekly">
-      <h3 class="title">주간리포트 제출 현황</h3>
-      <p class="desc">매주 일요일 16시 확인</p>
+    <section class="item cam">
+      <h3 class="title">
+        <span class="title-icon">📹</span>
+        캠스터디
+      </h3>
+      <p class="desc">실시간 화상 스터디를 통해 함께 학습할 수 있는 공간입니다.</p>
       <div class="actions">
-        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1BDDCVJyTOSskRyIPweKNaU_9msG7yOmMkWDmc1dS690/edit?gid=1268348849#gid=1268348849" target="_blank" rel="noopener noreferrer">현황 열기</a>
-        <a class="btn danger" href="https://docs.google.com/forms/d/e/1FAIpQLSdQOcVQ6bJtRQy99G4Uo7P8v3vt-b6cy0nIEMriqDN-vL1cQA/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">미제출자 보고</a>
+        <a class="btn primary" href="https://zep.us/play/47GQJ6" target="_blank" rel="noopener noreferrer">
+          🎥 캠스터디 입장하기
+        </a>
+      </div>
+      <p style="margin:16px 0 0; font-size:12px; color:var(--muted);">
+        💡 비밀번호: 112112
+      </p>
+    </section>
+
+    <section class="item schedule">
+      <h3 class="title">
+        <span class="title-icon">📅</span>
+        스케줄시트
+      </h3>
+      <p class="desc">전체 학습 일정과 중요한 날짜를 확인할 수 있는 구글 스프레드시트입니다.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1Kk6qECMT9ByVC9qe63la6MIRd6a1rm3r1uGl8NSeakE/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">
+          📊 스케줄 확인하기
+        </a>
       </div>
     </section>
 
   </div>
 </main>
 
-<footer style="max-width:980px;margin:28px auto 56px;padding:0 18px;color:var(--muted);font-size:12px">
-• 각 링크는 본인 구글 계정 권한으로만 열립니다. 링크가 안 열린다면 Police Maker 관리팀장에게 권한 요청을 해주세요.
+<footer style="max-width:800px;margin:40px auto 60px;padding:0 24px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6">
+  <p>💡 각 링크를 클릭하면 해당 서비스로 이동합니다.</p>
+  <p>📱 모바일에서도 편리하게 사용할 수 있습니다.</p>
 </footer>
 </body>
 </html>
