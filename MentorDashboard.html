@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>멘토 메뉴얼 보드드</title>
+<title>멘토 메뉴얼 보드</title>
 <style>
 :root{
   --bg:#0f172a; --bg2:#1e293b; --text:#f1f5f9; --muted:#94a3b8; --border:#334155;
@@ -109,6 +109,9 @@ header{
 .item.memory-missing .title-icon{background:#8b5cf6; color:#fff}
 .item.memory-missing .btn.primary{background:#8b5cf6}
 
+/* 구분 라벨 */
+.divider{margin:10px 0 4px; padding-top:14px; border-top:1px dashed var(--border); color:var(--muted); font-weight:800; letter-spacing:.02em}
+
 /* 작은 화면 최적화 */
 @media (max-width:480px){ 
   .welcome{font-size:20px} 
@@ -131,6 +134,8 @@ header{
 <main class="wrap">
   <div class="list">
 
+    <div class="divider">주간 업무</div>
+
     <section class="item weekly">
       <h3 class="title">
         <span class="title-icon">⏱️</span>
@@ -145,29 +150,21 @@ header{
     <section class="item setup">
       <h3 class="title">
         <span class="title-icon">🧭</span>
-        신규인원 진도설정 <span class="time">(토요일 ~ 일요일 15:00)</span>
+        신규인원 진도설정 및 보고 <span class="time">(토요일 ~ 일요일 15:00)</span>
       </h3>
-      <p class="desc">신규인원의 주간 학습 계획을 시트에 설정합니다.</p>
+      <p class="desc">신규인원의 주간 학습 계획을 시트에 설정하고, 완료 후 보고서를 제출합니다.</p>
       <div class="actions">
-        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1_whF24s-vv-w2mLrwqGueeJkj4Eam8j8hi-iFIbgHGE/edit?gid=448644496#gid=448644496" target="_blank" rel="noopener noreferrer">진도 시트 열기</a>
-      </div>
-    </section>
-
-    <section class="item setup-report">
-      <h3 class="title">
-        <span class="title-icon">✅</span>
-        신규인원 진도설정 여부 보고
-      </h3>
-      <p class="desc">주말 진도설정 완료 후 바로 보고서를 제출합니다.</p>
-      <div class="actions">
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1_whF24s-vv-w2mLrwqGueeJkj4Eam8j8hi-iFIbgHGE/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">진도 시트 열기</a>
         <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSed3R9MaBQQH-BRKiPqDL2Ahrs5VKYqVZOWbToLowxMV4vo5g/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">보고서 제출</a>
       </div>
     </section>
 
+    <div class="divider">일일업무</div>
+
     <section class="item inquiry">
       <h3 class="title">
         <span class="title-icon">📨</span>
-        문의 리포트 확인 <span class="time">(월~금 08:30 / 09:00~11:00 / 14:00 / 17:00)</span>
+        1. 문의 리포트 확인 <span class="time">(월~금 08:30 / 09:00~11:00 / 14:00 / 17:00)</span>
       </h3>
       <p class="desc">수험생 문의 현황을 확인하고 처리합니다.</p>
       <div class="actions">
@@ -175,10 +172,21 @@ header{
       </div>
     </section>
 
+    <section class="item record-report">
+      <h3 class="title">
+        <span class="title-icon">🚫</span>
+        2. 진도 리포트 제출
+      </h3>
+      <p class="desc">전일 수험기록 리포트 미제출자, 오류 수정, 회독수 추가, 진도설정을 합니다.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfeeU6n4ZeuG4T2005ByjTu8UwBI3Wzdu8_E856lbRQ8-LCIw/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">리포트 제출</a>
+      </div>
+    </section>
+
     <section class="item record">
       <h3 class="title">
         <span class="title-icon">📝</span>
-        수험기록 리포트 확인
+        3. 수험기록 리포트 확인
       </h3>
       <p class="desc">개별 수험생의 학습기록을 점검합니다.</p>
       <div class="actions">
@@ -186,49 +194,42 @@ header{
       </div>
     </section>
 
-    <section class="item record-report">
+    <section class="item record">
       <h3 class="title">
-        <span class="title-icon">🚫</span>
-        수험기록 리포트 미제출 명단 보고
+        <span class="title-icon">📚</span>
+        4. 회독수 추가 및 진도 수정하기 (챌린지캠)
       </h3>
-      <p class="desc">미제출자 발생 시 즉시 보고합니다.</p>
+      <p class="desc">회독수를 반영하고 진도설정을 수정합니다.</p>
       <div class="actions">
-        <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfeeU6n4ZeuG4T2005ByjTu8UwBI3Wzdu8_E856lbRQ8-LCIw/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">미제출 보고</a>
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1_whF24s-vv-w2mLrwqGueeJkj4Eam8j8hi-iFIbgHGE/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">바로가기</a>
       </div>
     </section>
 
     <section class="item attend-missing">
       <h3 class="title">
         <span class="title-icon">⏰</span>
-        10:00 출석 리포트 미제출자 확인 <span class="time">(10:00)</span>
+        출석 리포트 관리 <span class="time">(10:00 / 14:00)</span>
       </h3>
-      <p class="desc">당일 미제출자 명단을 확인합니다.</p>
+      <p class="desc">10시에 미제출자 명단을 확인하여 제출 요구 및 처리사항을 기록하고, 14시에 제출 여부를 재확인합니다.</p>
       <div class="actions">
-        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=1991190881#gid=1991190881" target="_blank" rel="noopener noreferrer">명단 열기</a>
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=1991190881#gid=1991190881" target="_blank" rel="noopener noreferrer">10:00 미제출자 명단</a>
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1eE0Mvs1rMRoo5VGyTk8b9t5AHNGE3QoeW1Zw0c8sCRM/edit?gid=318986350#gid=318986350" target="_blank" rel="noopener noreferrer">14:00 제출 여부 확인</a>
       </div>
     </section>
 
     <section class="item memory-missing">
       <h3 class="title">
         <span class="title-icon">🧠</span>
-        10:00 암기테스트 미제출자 명단 확인 <span class="time">(10:00)</span>
+        암기테스트 관리 <span class="time">(10:00 / 14:00)</span>
       </h3>
-      <p class="desc">당일 암기테스트 미제출자 명단을 확인합니다.</p>
+      <p class="desc">10시에 미제출자 명단을 확인하여 제출 요구 및 처리사항을 기록하고, 14시에 제출 여부를 재확인합니다.</p>
       <div class="actions">
-        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=2000995989#gid=2000995989" target="_blank" rel="noopener noreferrer">명단 열기</a>
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=2000995989#gid=2000995989" target="_blank" rel="noopener noreferrer">10:00 미제출자 명단</a>
+        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=2000995989#gid=2000995989" target="_blank" rel="noopener noreferrer">14:00 제출 여부 확인</a>
       </div>
     </section>
 
-    <section class="item attend-check">
-      <h3 class="title">
-        <span class="title-icon">✅</span>
-        14:00 출석 리포트 제출 여부 확인 <span class="time">(14:00)</span>
-      </h3>
-      <p class="desc">출석 리포트 제출 상태를 점검합니다.</p>
-      <div class="actions">
-        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1eE0Mvs1rMRoo5VGyTk8b9t5AHNGE3QoeW1Zw0c8sCRM/edit?gid=318986350#gid=318986350" target="_blank" rel="noopener noreferrer">제출 현황</a>
-      </div>
-    </section>
+    
 
   </div>
 </main>
