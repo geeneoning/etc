@@ -74,7 +74,7 @@ header{
 .btn{
   display:inline-flex; align-items:center; gap:8px; padding:14px 20px; min-height:48px; line-height:1; 
   border-radius:12px; text-decoration:none; font-size:14px; font-weight:600; white-space:nowrap; color:#fff; border:none; cursor:pointer; 
-  transition:all 0.2s ease; box-shadow:0 4px 12px rgba(0,0,0,0.15)
+  transition:all 0.2s ease; box-shadow:0 4px 12px rgba(0,0,0,0.15); justify-content:center
 }
 .btn:hover{transform:translateY(-1px); box-shadow:0 8px 20px rgba(0,0,0,0.25)}
 .btn:active{transform:translateY(0)}
@@ -111,6 +111,31 @@ header{
 
 /* 구분 라벨 */
 .divider{margin:10px 0 4px; padding-top:14px; border-top:1px dashed var(--border); color:var(--muted); font-weight:800; letter-spacing:.02em}
+
+/* 그룹/미니 카드 */
+.item.group{border-style:dashed}
+.item.group .btn.primary{background:#3b82f6}
+.group .mini-wrap{display:grid; grid-template-columns:1fr; gap:12px}
+@media (min-width:720px){
+  .group .mini-wrap{grid-template-columns:1fr 1fr}
+}
+.group .mini{
+  border:1px solid var(--border); border-radius:12px; padding:16px; background:color-mix(in sRGB, var(--card) 92%, transparent);
+}
+.group .mini-title{margin:0 0 8px; font-size:16px; font-weight:700}
+.group .mini{display:flex; flex-direction:column}
+.group .mini .desc{margin:0 0 12px}
+.group .mini .actions{margin-top:auto; display:grid; grid-template-columns:1fr; gap:8px; align-items:center}
+.group .mini .actions .btn{min-height:40px; padding:10px 14px; font-size:13px; width:100%; justify-content:center}
+@media (min-width:520px){
+  .group .mini .actions{grid-template-columns:repeat(2,minmax(140px,1fr))}
+}
+
+/* 08:30 미니 카드 카테고리 버튼 색상 */
+.group .mini.inquiry .btn.primary{background:#0ea5e9}
+.group .mini.report .btn.primary{background:#ef4444}
+.group .mini.record .btn.primary{background:#6366f1}
+.group .mini.progress .btn.primary{background:#3b82f6}
 
 /* 작은 화면 최적화 */
 @media (max-width:480px){ 
@@ -161,47 +186,40 @@ header{
 
     <div class="divider">일일업무</div>
 
-    <section class="item inquiry">
+    <section class="item group">
       <h3 class="title">
-        <span class="title-icon">📨</span>
-        1. 문의 리포트 확인 <span class="time">(월~금 08:30 / 09:00~11:00 / 14:00 / 17:00)</span>
+        <span class="title-icon">🕣</span>
+        08:30 처리 그룹
       </h3>
-      <p class="desc">수험생 문의 현황을 확인하고 처리합니다.</p>
-      <div class="actions">
-        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=1159472530#gid=1159472530" target="_blank" rel="noopener noreferrer">문의 리포트</a>
-      </div>
-    </section>
-
-    <section class="item record-report">
-      <h3 class="title">
-        <span class="title-icon">🚫</span>
-        2. 진도 리포트 제출
-      </h3>
-      <p class="desc">전일 수험기록 리포트 미제출자, 오류 수정, 회독수 추가, 진도설정을 합니다.</p>
-      <div class="actions">
-        <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfeeU6n4ZeuG4T2005ByjTu8UwBI3Wzdu8_E856lbRQ8-LCIw/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">리포트 제출</a>
-      </div>
-    </section>
-
-    <section class="item record">
-      <h3 class="title">
-        <span class="title-icon">📝</span>
-        3. 수험기록 리포트 확인
-      </h3>
-      <p class="desc">개별 수험생의 학습기록을 점검합니다.</p>
-      <div class="actions">
-        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1606v10mVxmGLEUW8RFmihoDdI8zw5n0NTOp1TRWux18/edit?gid=435882025#gid=435882025" target="_blank" rel="noopener noreferrer">수험기록 열기</a>
-      </div>
-    </section>
-
-    <section class="item record">
-      <h3 class="title">
-        <span class="title-icon">📚</span>
-        4. 회독수 추가 및 진도 수정하기 (챌린지캠)
-      </h3>
-      <p class="desc">회독수를 반영하고 진도설정을 수정합니다.</p>
-      <div class="actions">
-        <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1_whF24s-vv-w2mLrwqGueeJkj4Eam8j8hi-iFIbgHGE/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">바로가기</a>
+      <div class="mini-wrap">
+        <div class="mini inquiry">
+          <h4 class="mini-title">1. 문의 리포트 확인 <span class="time">(월~금 08:30 / 09:00~11:00 / 14:00 / 17:00)</span></h4>
+          <p class="desc">수험생 문의 현황을 확인하고 처리합니다.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1v2CEXy_tkHFN2v3-F0PrjrAhYrMawlkIhahNBC0SgbE/edit?gid=1159472530#gid=1159472530" target="_blank" rel="noopener noreferrer">문의 리포트</a>
+          </div>
+        </div>
+        <div class="mini report">
+          <h4 class="mini-title">2. 진도 리포트 제출</h4>
+          <p class="desc">전일 수험기록 리포트 미제출자, 오류 수정, 회독수 추가, 진도설정을 합니다.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfeeU6n4ZeuG4T2005ByjTu8UwBI3Wzdu8_E856lbRQ8-LCIw/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">리포트 제출</a>
+          </div>
+        </div>
+        <div class="mini record">
+          <h4 class="mini-title">3. 수험기록 리포트 확인</h4>
+          <p class="desc">개별 수험생의 학습기록을 점검합니다.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1606v10mVxmGLEUW8RFmihoDdI8zw5n0NTOp1TRWux18/edit?gid=435882025#gid=435882025" target="_blank" rel="noopener noreferrer">수험기록 열기</a>
+          </div>
+        </div>
+        <div class="mini progress">
+          <h4 class="mini-title">4. 회독수 추가 및 진도 수정하기 (챌린지캠)</h4>
+          <p class="desc">회독수를 반영하고 진도설정을 수정합니다.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://docs.google.com/spreadsheets/d/1_whF24s-vv-w2mLrwqGueeJkj4Eam8j8hi-iFIbgHGE/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">바로가기</a>
+          </div>
+        </div>
       </div>
     </section>
 
